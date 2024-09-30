@@ -196,7 +196,7 @@ header {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    max-width: 800px;
+    max-width: 200px;
     margin: 0 auto;
 }
 
