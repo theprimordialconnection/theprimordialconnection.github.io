@@ -1,0 +1,67 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Header styling */
+header {
+    background-color: #333; /* Dark grey */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo styling */
+.logo {
+    height: 40px; /* Adjust the logo height */
+}
+
+/* Menu styling */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+.content {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.content h1 {
+    margin-bottom: 100px;
+}
+
+/* Image styling */
+.welcome-image {
+    margin-top: 100px;
+    width: auto;
+    height: auto;
+    max-width: 80%; /* Ensure the image fits in the view */
+    max-height: 300px; /* Adjust as needed for the welcome image */
+}
