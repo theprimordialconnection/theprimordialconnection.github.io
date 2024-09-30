@@ -15,7 +15,7 @@ body {
 
 /* Header styling */
 header {
-    background-color: #1f1f1f; /* Dark grey */
+    background-color: rgba(22, 22, 43, 0.959); /* Dark grey */
     padding: 10px 20px;
     position: fixed; /* Fix the header at the top of the page */
     top: 0;
@@ -207,7 +207,7 @@ header {
 
 /* Footer styling */
 footer {
-    background-color: black;
+    background-color: rgb(9, 10, 18);
     height: 100px; /* Set footer height to 100px */
     display: flex;
     align-items: center;
