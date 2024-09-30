@@ -183,10 +183,12 @@ header {
 }
 
 .supporters-section h2 {
-    color: white;
+    background-color: white; /* White background to highlight */
+    color: black; /* Black text */
     font-size: 1.5em;
     margin-bottom: 20px;
-    padding-left: 0;
+    padding: 5px 10px; /* Add padding for better readability */
+    display: inline-block; /* Ensure the background only covers the text */
 }
 
 /* Supporters images layout */
