@@ -10,58 +10,259 @@ body {
     background-color: black;
     color: white;
     font-family: 'Courier New', Courier, monospace;
+    padding-top: 60px; /* Push content down to prevent overlap with fixed header */
 }
 
 /* Header styling */
 header {
-    background-color: #333; /* Dark grey */
+    background-color: #1f1f1f; /* Dark grey */
     padding: 10px 20px;
+    position: fixed; /* Fix the header at the top of the page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the header stays on top of other content */
+}
+
+/* Logo and menu container */
+.nav-container {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    position: relative; /* Allow positioning of the menu */
 }
 
 /* Logo styling */
 .logo {
     height: 40px; /* Adjust the logo height */
+    margin-right: 40px; /* Space between logo and menu */
 }
 
 /* Menu styling */
-nav ul {
+.menu {
     list-style-type: none;
     display: flex;
-    gap: 20px;
+    gap: 40px; /* Adjust gap to control spacing between menu items */
 }
 
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
+/* Burger menu icon */
+.burger {
+    display: none;
+    font-size: 30px;
     color: white;
-    text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    position: absolute;
+    right: 20px; /* Right-aligned in the header */
 }
 
-nav ul li a:hover {
+/* Menu item styling */
+.menu li a, .bottom-menu ul li a {
+    color: #00ff00; /* Bright green */
     text-decoration: underline;
+    font-family: 'Courier New', Courier, monospace;
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
+
+.menu li a:hover, .bottom-menu ul li a:hover {
+    color: #006600; /* Darker green on hover */
 }
 
 /* Main content */
 .content {
     text-align: center;
-    padding-top: 100px;
+    padding-top: 50px; /* Place the image 50px from the top of the page */
 }
 
-.content h1 {
-    margin-bottom: 100px;
+/* Marquee container */
+.marquee-container {
+    width: 100%;
+    max-width: 800px; /* Align with tpcwelcome.png */
+    overflow: hidden; /* Hide overflow of the marquee text */
+    margin: 10px auto 10px auto; /* Add 10px margin on top and bottom */
+    position: relative; /* To position it above the image */
+}
+
+/* Marquee content */
+.marquee-content {
+    display: flex; /* Use flexbox to align text for continuous flow */
+    animation: marquee 30s linear infinite; /* Continuous scrolling animation */
+}
+
+/* Marquee text */
+.marquee-text {
+    white-space: nowrap; /* Ensure the text doesn't wrap */
+    padding-right: 100px; /* Add spacing between the two text blocks */
+    color: #00ff00; /* Default green text, like the menu */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+}
+
+/* Specific styling for the red text */
+.red-text {
+    color: red;
+}
+
+/* Specific styling for the red text */
+.blue-text {
+    color: rgb(0, 145, 255);
+}
+
+/* Specific styling for the red text */
+.purple-text {
+    color: rgb(153, 0, 255);
+}
+
+/* Specific styling for the red text */
+.yellow-text {
+    color: rgb(255, 230, 0);
+}
+
+/* Style for links in the marquee */
+.marquee-text a {
+    color: #00ff00; /* Match the text color */
+    text-decoration: underline; /* Ensure the link is underlined */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Continuous marquee animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(0); /* Start with text at its original position */
+    }
+    100% {
+        transform: translateX(-100%); /* Move the text completely off-screen */
+    }
+}
+
+/* Main content */
+.content {
+    text-align: center;
+    padding-top: 0px; /* Keep tpcwelcome.png 0px from the top */
+    position: relative; /* To position the marquee above the image */
 }
 
 /* Image styling */
 .welcome-image {
-    margin-top: 100px;
-    width: auto;
+    margin-top: 0px;
+    width: 100%;
+    max-width: 800px;
     height: auto;
-    max-width: 80%; /* Ensure the image fits in the view */
-    max-height: 300px; /* Adjust as needed for the welcome image */
+}
+
+/* Image styling */
+.welcome-image {
+    margin-top: 0px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+/* Bottom menu styling */
+.bottom-menu {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.bottom-menu ul {
+    list-style-type: none;
+    display: inline-flex;
+    gap: 40px;
+}
+
+.bottom-menu ul li {
+    display: inline;
+}
+
+/* Supporters Section */
+.supporters-section {
+    margin-top: 20px;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.supporters-section h2 {
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+/* Supporters images layout */
+.supporters-images {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.supporter-image {
+    width: 250px;
+    height: auto;
+}
+
+/* Footer styling */
+footer {
+    background-color: black;
+    height: 100px; /* Set footer height to 100px */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align the image and text on opposite sides */
+    max-width: 800px; /* Align with tpcwelcome.png */
+    margin: 40px auto 0;
+    padding-right: 10px; /* Ensure text is 10px away from the right edge */
+    position: relative;
+}
+
+/* Footer icon styling */
+.footer-icon {
+    width: 70px; /* Adjust the size of the gif as needed */
+    height: auto;
+    padding-left: 10px; /* Align with the left side of tpcwelcome.png */
+}
+
+/* Footer text styling */
+footer p {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 100px; /* Vertically center the text */
+}
+
+/* Responsive Styling for Smaller Screens */
+@media (max-width: 768px) {
+    /* Supporters section responsive adjustments */
+    .supporters-images {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .supporter-image {
+        width: 80%;
+    }
+
+    /* Adjust menu for mobile view */
+    .menu {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        position: absolute;
+        top: 60px; /* Below the header */
+        right: 0;
+        background-color: #333;
+        padding: 10px;
+        width: 200px;
+    }
+
+    /* Show burger icon on smaller screens */
+    .burger {
+        display: block;
+    }
+
+    /* Show the menu when burger is clicked */
+    .menu.active {
+        display: flex;
+    }
 }
