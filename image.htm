@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="prim0rdialfi5h">
+    <title>Image Viewer</title>
+    <link rel="stylesheet" href="../styles/style.css"> <!-- General stylesheet -->
+    <link rel="stylesheet" href="../styles/table.css"> <!-- Table-specific stylesheet -->
+
+    <style>
+        /* Additional CSS for the image page */
+        .image-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .description {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .image-viewer {
+            margin-top: 10px;
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .download-container {
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 10px;
+        }
+
+        .download-link {
+            font-size: 18px;
+            color: #00ff00;
+            text-decoration: none;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .download-link:hover {
+            background-color: #00ff00;
+            color: black;
+        }
+
+        .file-size {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="nav-container">
+            <a href="../index.htm">
+                <img src="../img/tpclogo.png" alt="Logo" class="logo">
+            </a>
+            <div class="burger" onclick="toggleMenu()">&#9776;</div>
+            <ul class="menu">
+                <li><a href="../seeds.htm">w33d seeds</a></li>
+                <li><a href="../packs.htm">sample packs</a></li>
+                <li><a href="../garms.htm">garms</a></li>
+                <li><a href="../ukparties.htm">uk parties</a></li>
+                <li><a href="../freeshit.htm">free shit</a></li>
+                <li><a href="../eggs.htm">eggs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Image Viewer Container -->
+    <div class="image-container">
+        <h1 id="imageTitle">Image Title</h1>
+
+        <!-- Description Section -->
+        <p id="imageDescription" class="description">Loading description...</p>
+
+        <!-- Image viewer for multiple images -->
+        <div id="imageGallery">
+            <!-- Images will be dynamically loaded here -->
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-container">
+            <a id="downloadLink" href="" class="download-link" download>Download Image</a>
+            <div id="fileSize" class="file-size">Calculating file size...</div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <img src="../img/rotating_favicon.gif" alt="Rotating Favicon" class="footer-icon">
+        <p>theprimordialconnection. based in north england.</p>
+    </footer>
+
+    <!-- Script to dynamically load image details and update the page -->
+    <script src="../js/listData.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const imageTitle = urlParams.get('title'); // Get the image title from URL
+
+            // Find the image data in listData.js
+            const imageData = listData.find(item => item.title === imageTitle);
+
+            // If image data is found, set the title, description, and images
+            if (imageData) {
+                document.getElementById('imageTitle').innerText = imageData.title;
+                document.getElementById('imageDescription').innerHTML = imageData.description;  // Use innerHTML to allow links and images
+
+                const gallery = document.getElementById('imageGallery');
+                gallery.innerHTML = ''; // Clear any existing content
+
+                // Handle multiple images
+                if (imageData.images && imageData.images.length > 0) {
+                    imageData.images.forEach(img => {
+                        const imageElement = document.createElement('img');
+                        imageElement.src = img.imageSrc;
+                        imageElement.alt = imageData.title;
+                        imageElement.classList.add('image-viewer');
+                        gallery.appendChild(imageElement);
+                    });
+                } else {
+                    const imageElement = document.createElement('img');
+                    imageElement.src = imageData.imageSrc;
+                    imageElement.alt = imageData.title;
+                    imageElement.classList.add('image-viewer');
+                    gallery.appendChild(imageElement);
+                }
+
+                // Set download link and file size for the first image
+                const firstImageSrc = imageData.images ? imageData.images[0].imageSrc : imageData.imageSrc;
+                document.getElementById('downloadLink').href = firstImageSrc;
+
+                // Function to calculate the file size
+                function calculateFileSize(url) {
+                    const fileSizeElement = document.getElementById('fileSize');
+                    fetch(url, { method: 'HEAD' })
+                        .then(response => {
+                            const fileSize = response.headers.get('content-length');
+                            if (fileSize) {
+                                const sizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Convert to MB
+                                fileSizeElement.innerText = `File size: ${sizeInMB} MB`;
+                            } else {
+                                fileSizeElement.innerText = 'File size not available';
+                            }
+                        })
+                        .catch(error => {
+                            fileSizeElement.innerText = 'Error calculating file size';
+                        });
+                }
+
+                // Calculate file size for the first image
+                calculateFileSize(firstImageSrc);
+            } else {
+                document.getElementById('imageDescription').innerHTML = 'Image not found.';
+                document.title = "Image not found | theprimordialconnection";
+            }
+        });
+    </script>
+</body>
+
+</html>

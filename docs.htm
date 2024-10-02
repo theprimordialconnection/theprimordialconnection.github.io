@@ -38,15 +38,16 @@
         <div class="header-dropdown-container">
             <!-- Dropdown for filtering by category -->
             <select id="categoryFilter" class="filter-dropdown" onchange="filterTable()">
-                <option value="all">Filter by Category</option>
-                <option value="document">Document</option>
-                <option value="video">Video</option>
-                <option value="short">Short</option>
-                <option value="war">War</option>
+                <option value="all">▼ filter by category</option>
+                <option value="document">documents</option>
+                <option value="video">videos</option>
+                <option value="short">shorts</option>
+                <option value="war">war</option>
             </select>
 
             <!-- Search box for the 'Name' column -->
-            <input type="text" id="searchInput" class="search-box" onkeyup="searchByName()" placeholder="Search by Name">
+            <input type="text" id="searchInput" class="search-box" onkeyup="searchByName()"
+                placeholder="Search by Name">
 
             <h1 class="page-header">tpc database_:</h1>
         </div>
@@ -83,7 +84,6 @@
             <div id="paginationControls"></div>
         </div>
     </div>
-
     <!-- Footer Section -->
     <footer>
         <img src="img/rotating_favicon.gif" alt="Rotating Favicon" class="footer-icon">

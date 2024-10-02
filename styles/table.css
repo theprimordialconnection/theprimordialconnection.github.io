@@ -159,6 +159,32 @@ td {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/* Style for tags to look like buttons */
+.tag-link {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px 5px 5px 0;
+    background-color: #006600; /* Dark green background */
+    color: white; /* White text for readability */
+    font-size: 14px;
+    border-radius: 20px; /* Rounded corners */
+    text-decoration: none; /* Remove underline for links */
+    font-family: 'Courier New', Courier, monospace; /* Consistent font */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
+}
+
+.tag-link:hover {
+    background-color: #00ff00; /* Bright green on hover */
+    color: black; /* Black text on hover for contrast */
+}
+
+/* Tag container to handle multiple tags */
+.tag-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow tags to wrap within their container */
+    gap: 5px; /* Add space between the tags */
+}
+
 /* Pagination controls styling */
 #paginationControls {
     text-align: center;

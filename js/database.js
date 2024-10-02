@@ -32,20 +32,21 @@ function populateTable() {
 
         // Create the tags cell and make tags clickable
         const tagsCell = document.createElement('td');
+        const tagsContainer = document.createElement('div'); // Container for tags
+        tagsContainer.classList.add('tag-container'); // Style tags container
+
         if (item.tags && item.tags.length) {
             item.tags.forEach(tag => {
                 const tagLink = document.createElement('a');
-                tagLink.href = `tag.htm?tag=${tag}`;  // Link to tag.htm with the selected tag
+                tagLink.href = `tag.htm?tag=${encodeURIComponent(tag)}`;  // Link to tag.htm with the selected tag
                 tagLink.textContent = tag;
-                tagLink.classList.add('tag-link'); // Optional: Add a class for styling
-                tagsCell.appendChild(tagLink);
-                
-                // Add space between tags
-                tagsCell.appendChild(document.createTextNode(' '));
+                tagLink.classList.add('tag-link'); // Apply the class for styling the tags
+                tagsContainer.appendChild(tagLink);
             });
         } else {
             tagsCell.textContent = "No tags"; // Display "No tags" if there are no tags
         }
+        tagsCell.appendChild(tagsContainer);
 
         const linkCell = document.createElement('td');
         const link = document.createElement('a');
@@ -57,7 +58,7 @@ function populateTable() {
         row.appendChild(nameCell);
         row.appendChild(dateCell);
         row.appendChild(categoryCell);
-        row.appendChild(tagsCell);
+        row.appendChild(tagsCell);  // Append tagsCell
         row.appendChild(linkCell);
 
         // Append the row to the table body

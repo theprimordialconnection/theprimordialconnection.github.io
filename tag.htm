@@ -5,24 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="prim0rdialfi5h">
-    <title>Content Tagged | theprimordialconnection</title>
+    <title>Tag Database</title>
     <link rel="stylesheet" href="styles/style.css"> <!-- General stylesheet -->
     <link rel="stylesheet" href="styles/table.css"> <!-- Table-specific stylesheet -->
-
-    <style>
-        /* Additional styles for tag-based content */
-        .tag-header {
-            font-family: 'Courier New', Courier, monospace;
-            color: #00ff00;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 24px;
-        }
-
-        .table-wrapper {
-            margin-top: 20px;
-        }
-    </style>
 </head>
 
 <body>
@@ -32,6 +17,7 @@
             <a href="index.htm">
                 <img src="img/tpclogo.png" alt="Logo" class="logo">
             </a>
+            <div class="burger" onclick="toggleMenu()">&#9776;</div>
             <ul class="menu">
                 <li><a href="seeds.htm">w33d seeds</a></li>
                 <li><a href="packs.htm">sample packs</a></li>
@@ -43,28 +29,23 @@
         </nav>
     </header>
 
-    <!-- Main Content Section -->
+    <!-- Tag Table Section -->
     <div class="table-wrapper">
-        <h1 class="tag-header">Content Tagged with "<span id="tagHeader"></span>"</h1>
-        
-        <!-- Dynamic Table to Display Filtered Content -->
+        <h1 class="page-header">content tagged with '<span id="tagTitle"></span>'</h1>
+
         <table class="content-table" id="dataTable">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Date Uploaded</th>
                     <th>Category</th>
-                    <th>Tags</th>
                     <th>Link</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Rows will be dynamically added here based on the tag -->
+                <!-- Rows will be dynamically populated here -->
             </tbody>
         </table>
-
-        <!-- Pagination Controls (if necessary) -->
-        <div id="paginationControls"></div>
     </div>
 
     <!-- Footer Section -->
@@ -73,9 +54,9 @@
         <p>theprimordialconnection. based in north england.</p>
     </footer>
 
-    <!-- Include JavaScript Files -->
-    <script src="js/listData.js"></script> <!-- Data source for all content -->
-    <script src="js/tag.js"></script> <!-- Tag filtering functionality -->
+    <!-- Include JS for dynamically loading tag data -->
+    <script src="js/listData.js"></script>
+    <script src="js/tag.js"></script> <!-- Custom tag functionality -->
 </body>
 
 </html>

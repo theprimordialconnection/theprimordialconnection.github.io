@@ -23,8 +23,10 @@
         .document-title {
             font-size: 24px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #00ff00; /* Bright green underline */
-            width: 100%; /* Same width as the document container */
+            border-bottom: 2px solid #00ff00;
+            /* Bright green underline */
+            width: 100%;
+            /* Same width as the document container */
         }
 
         .toggle-description {
@@ -44,7 +46,8 @@
             font-size: 14px;
             line-height: 1.6;
             text-align: justify;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
 
         .button-container {
@@ -53,7 +56,8 @@
             margin-top: 20px;
         }
 
-        .view-button, .download-button {
+        .view-button,
+        .download-button {
             font-size: 18px;
             color: #00ff00;
             text-decoration: none;
@@ -62,7 +66,8 @@
             margin-right: 10px;
         }
 
-        .view-button:hover, .download-button:hover {
+        .view-button:hover,
+        .download-button:hover {
             background-color: #00ff00;
             color: black;
         }
@@ -109,7 +114,7 @@
     <!-- Script to dynamically load document details, toggle description, and update buttons -->
     <script src="../js/listData.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Get URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const documentTitle = urlParams.get('title'); // Get document title from URL
@@ -230,7 +235,7 @@
             }
         });
     </script>
-    
+
 </body>
 
 </html>

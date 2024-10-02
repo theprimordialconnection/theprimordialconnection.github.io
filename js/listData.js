@@ -2,7 +2,7 @@ const listData = [
     {
         title: "Tehran",
         date: "September 10, 2024",
-        category: "Video",
+        category: "Video group",  // Updated category
         link: "video.htm?title=Tehran",  // Link to video.htm with the title as parameter
         videos: [
             {
@@ -14,21 +14,21 @@ const listData = [
                 description: "Part 2 of the Tehran documentary."
             }
         ],
-        tags: ["documentary", "history", "middle-east"] // Tags for Tehran
+        tags: ["Intl. Troops Footage", "Political Corruption", "Espionage"] // Random tags
     },
     {
         title: "Afghanistan",
         date: "September 15, 2024",
-        category: "Video",
-        link: "video.htm?title=Afghanistan",  // Link to video.htm
+        category: "Video",  // Single video
+        link: "video.htm?title=Afghanistan",
         videoSrc: "leaks/video/afghanistan.mp4",  // Single video
         description: "A detailed insight into the war in Afghanistan.",
-        tags: ["war", "conflict", "history"] // Tags for Afghanistan
+        tags: ["War files", "Terrorist Footage", "UK Troops Footage"] // Random tags
     },
     {
         title: "Research Paper on AI",
         date: "August 1, 2024",
-        category: "Document",
+        category: "Document group",  // Updated category
         link: "document.htm?title=Research%20Paper%20on%20AI",
         documents: [
             {
@@ -40,15 +40,42 @@ const listData = [
                 description: "Part 2 of the research paper on AI, focusing on practical applications."
             }
         ],
-        tags: ["ai", "technology", "research"] // Tags for AI Research Paper
+        tags: ["Espionage", "PsyOp", "Leaks"] // Random tags
     },
     {
         title: "User Guide for OpenCart",
         date: "July 15, 2024",
-        category: "Document",
+        category: "Document",  // Single document
         link: "document.htm?title=User%20Guide%20for%20OpenCart",
         documentSrc: "leaks/documents/opencart_user_guide.pdf",  // Single document
         description: "User guide for using the OpenCart e-commerce platform.",
-        tags: ["ecommerce", "guide", "opencart"] // Tags for OpenCart Guide
+        tags: ["Intl. Govt Malpractice", "Political Corruption"] // Random tags
+    },
+    {
+        title: "Art Exhibit",
+        date: "October 1, 2024",
+        category: "Image group",  // Updated category
+        link: "image.htm?title=Art%20Exhibit",  // Link to image.htm
+        images: [
+            {
+                imageSrc: "leaks/images/art_exhibit1.jpg",
+                description: "Art Exhibit Part 1"
+            },
+            {
+                imageSrc: "leaks/images/art_exhibit2.jpg",
+                description: "Art Exhibit Part 2"
+            }
+        ],
+        description: "A collection of images from the <a href='https://example.com' target='_blank'>Art Exhibit</a>.",
+        tags: ["War files", "Leaks", "UK Govt Malpractice"] // Random tags
+    },
+    {
+        title: "Nature Photography",
+        date: "October 2, 2024",
+        category: "Image",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
     }
 ];
