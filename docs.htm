@@ -34,22 +34,21 @@
 
     <!-- Table Wrapper -->
     <div class="table-wrapper">
-        <!-- Flex container for dropdown, search box, and header -->
+        <!-- Flex container for dropdown and search box -->
         <div class="header-dropdown-container">
             <!-- Dropdown for filtering by category -->
             <select id="categoryFilter" class="filter-dropdown" onchange="filterTable()">
                 <option value="all">▼ filter by category</option>
-                <option value="document">documents</option>
-                <option value="video">videos</option>
-                <option value="short">shorts</option>
-                <option value="war">war</option>
+                <option value="document">document</option>
+                <option value="document group">document group</option>
+                <option value="image">image</option>
+                <option value="image group">image group</option>
+                <option value="video">video</option>
+                <option value="video group">video group</option>
             </select>
 
             <!-- Search box for the 'Name' column -->
-            <input type="text" id="searchInput" class="search-box" onkeyup="searchByName()"
-                placeholder="Search by Name">
-
-            <h1 class="page-header">tpc database_:</h1>
+            <input type="text" id="searchInput" class="search-box" onkeyup="searchByName()" placeholder="search">
         </div>
 
         <!-- Content Section -->
@@ -60,19 +59,19 @@
                     <tr>
                         <th onclick="sortTable(0, 'text')">
                             <div class="header-wrapper">
-                                <span>Name</span>
+                                <span>name</span>
                                 <span class="sortable" id="nameArrow">▲</span>
                             </div>
                         </th>
                         <th onclick="sortTable(1, 'date')">
                             <div class="header-wrapper">
-                                <span>Date Uploaded</span>
+                                <span>date uploaded</span>
                                 <span class="sortable" id="dateArrow">▲</span>
                             </div>
                         </th>
-                        <th>Category</th>
-                        <th>Tags</th> <!-- Changed from 'Thumbnail' to 'Tags' -->
-                        <th>Link</th>
+                        <th>category</th>
+                        <th>tags</th> <!-- Changed from 'Thumbnail' to 'Tags' -->
+                        <th>link</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -84,6 +83,7 @@
             <div id="paginationControls"></div>
         </div>
     </div>
+    
     <!-- Footer Section -->
     <footer>
         <img src="img/rotating_favicon.gif" alt="Rotating Favicon" class="footer-icon">

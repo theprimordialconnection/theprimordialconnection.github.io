@@ -1,3 +1,11 @@
+/* Font setup */
+@font-face {
+    font-family: 'Mozart NBP';
+    src: url('fonts/MozartNbp-93Ey.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Basic Reset */
 * {
     margin: 0;
@@ -9,8 +17,9 @@
 body {
     background-color: black;
     color: white;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
     padding-top: 60px; /* Push content down to prevent overlap with fixed header */
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically adjust from 14px to 18px */
 }
 
 /* Header styling */
@@ -29,7 +38,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Allow positioning of the menu */
+    position: relative;
 }
 
 /* Logo styling */
@@ -59,8 +68,9 @@ header {
 .menu li a, .bottom-menu ul li a {
     color: #00ff00; /* Bright green */
     text-decoration: underline;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
     transition: color 0.3s ease; /* Smooth transition effect */
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale menu text */
 }
 
 .menu li a:hover, .bottom-menu ul li a:hover {
@@ -75,9 +85,9 @@ header {
     margin: 5px 5px 5px 0;
     background-color: #006600; /* Dark green background */
     color: white; /* White text */
-    font-size: 14px;
+    font-size: 12px; /* Keep the tag text at a fixed size */
     border-radius: 20px; /* Rounded corners */
-    font-family: 'Courier New', Courier, monospace; /* Consistent font */
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace; /* Consistent font */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
@@ -86,7 +96,6 @@ header {
     color: black; /* Black text on hover */
     text-decoration: none; /* Ensure underline doesn't appear on hover */
 }
-
 
 /* Main content */
 .content {
@@ -114,8 +123,8 @@ header {
     white-space: nowrap; /* Ensure the text doesn't wrap */
     padding-right: 100px; /* Add spacing between the two text blocks */
     color: #00ff00; /* Default green text, like the menu */
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2em;
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale marquee text */
 }
 
 /* Specific styling for the red text */
@@ -123,17 +132,17 @@ header {
     color: red;
 }
 
-/* Specific styling for the red text */
+/* Specific styling for the blue text */
 .blue-text {
     color: rgb(0, 145, 255);
 }
 
-/* Specific styling for the red text */
+/* Specific styling for the purple text */
 .purple-text {
     color: rgb(153, 0, 255);
 }
 
-/* Specific styling for the red text */
+/* Specific styling for the yellow text */
 .yellow-text {
     color: rgb(255, 230, 0);
 }
@@ -142,7 +151,8 @@ header {
 .marquee-text a {
     color: #00ff00; /* Match the text color */
     text-decoration: underline; /* Ensure the link is underlined */
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale links inside the marquee */
 }
 
 /* Continuous marquee animation */
@@ -160,14 +170,6 @@ header {
     text-align: center;
     padding-top: 0px; /* Keep tpcwelcome.png 0px from the top */
     position: relative; /* To position the marquee above the image */
-}
-
-/* Image styling */
-.welcome-image {
-    margin-top: 0px;
-    width: 100%;
-    max-width: 800px;
-    height: auto;
 }
 
 /* Image styling */
@@ -237,6 +239,7 @@ footer {
     margin: 40px auto 0;
     padding-right: 10px; /* Ensure text is 10px away from the right edge */
     position: relative;
+    padding-bottom: 10px; /* Add padding to ensure footer text is 10px away from bottom */
 }
 
 /* Footer icon styling */
@@ -249,8 +252,13 @@ footer {
 /* Footer text styling */
 footer p {
     color: white;
-    font-family: 'Courier New', Courier, monospace;
-    line-height: 100px; /* Vertically center the text */
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
+    line-height: 1.5;
+    margin: 0; /* Remove default margin */
+    position: absolute;
+    bottom: 10px; /* Position 10px away from the bottom of the footer */
+    right: 10px;  /* Position 10px away from the right side of the footer */
+    font-size: 18px; /* Keep the footer text at 18px */
 }
 
 /* Responsive Styling for Smaller Screens */

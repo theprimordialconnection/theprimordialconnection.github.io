@@ -2,7 +2,7 @@ const listData = [
     {
         title: "Tehran",
         date: "September 10, 2024",
-        category: "Video group",  // Updated category
+        category: "video group",  // Updated category
         link: "video.htm?title=Tehran",  // Link to video.htm with the title as parameter
         videos: [
             {
@@ -19,7 +19,7 @@ const listData = [
     {
         title: "Afghanistan",
         date: "September 15, 2024",
-        category: "Video",  // Single video
+        category: "video",  // Single video
         link: "video.htm?title=Afghanistan",
         videoSrc: "leaks/video/afghanistan.mp4",  // Single video
         description: "A detailed insight into the war in Afghanistan.",
@@ -28,7 +28,7 @@ const listData = [
     {
         title: "Research Paper on AI",
         date: "August 1, 2024",
-        category: "Document group",  // Updated category
+        category: "document group",  // Updated category
         link: "document.htm?title=Research%20Paper%20on%20AI",
         documents: [
             {
@@ -45,7 +45,7 @@ const listData = [
     {
         title: "User Guide for OpenCart",
         date: "July 15, 2024",
-        category: "Document",  // Single document
+        category: "document",  // Single document
         link: "document.htm?title=User%20Guide%20for%20OpenCart",
         documentSrc: "leaks/documents/opencart_user_guide.pdf",  // Single document
         description: "User guide for using the OpenCart e-commerce platform.",
@@ -54,7 +54,7 @@ const listData = [
     {
         title: "Art Exhibit",
         date: "October 1, 2024",
-        category: "Image group",  // Updated category
+        category: "image group",  // Updated category
         link: "image.htm?title=Art%20Exhibit",  // Link to image.htm
         images: [
             {
@@ -72,10 +72,73 @@ const listData = [
     {
         title: "Nature Photography",
         date: "October 2, 2024",
-        category: "Image",  // Single image
+        category: "image",  // Single image
         link: "image.htm?title=Nature%20Photography",
         imageSrc: "leaks/images/nature.jpg",  // Single image
         description: "A beautiful nature photography collection.",
         tags: ["UK Gore", "Intl. Gore"] // Random tags
-    }
+    },
+    {
+        title: "Bloodthirst",
+        date: "October 1, 2024",
+        category: "image Group",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
+    },
+    {
+        title: "Mexican Cartel Demonstration",
+        date: "July 12, 2024",
+        category: "image",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
+    },
+    {
+        title: "Brazilian Mafia",
+        date: "October 2, 2024",
+        category: "image",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
+    },
+    {
+        title: "IRA footage",
+        date: "October 2, 2024",
+        category: "image",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
+    },
+    {
+        title: "Taliban Webcam",
+        date: "October 2, 2024",
+        category: "image",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
+    },
+    {
+        title: "Podesta Documents",
+        date: "January 22, 2024",
+        category: "image",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
+    },
+    {
+        title: "Diddy House Party Image Leak",
+        date: "October 1, 2024",
+        category: "image",  // Single image
+        link: "image.htm?title=Nature%20Photography",
+        imageSrc: "leaks/images/nature.jpg",  // Single image
+        description: "A beautiful nature photography collection.",
+        tags: ["UK Gore", "Intl. Gore"] // Random tags
+    },
 ];

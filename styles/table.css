@@ -1,3 +1,16 @@
+/* Font setup */
+@font-face {
+    font-family: 'Mozart NBP';
+    src: url('fonts/MozartNbp-93Ey.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Universal font-size reset */
+* {
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
+}
+
 /* Center the image */
 .welcome-image {
     display: block;
@@ -15,14 +28,13 @@
     text-align: left;
     background-color: black;
     color: white;
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .content-table thead th {
     border-bottom: 2px solid #00ff00; /* Bright green underline */
     padding: 15px;
     color: #00ff00;
-    font-size: 1.2em;
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale headers */
     text-align: left; /* Ensure headers are left-aligned */
     white-space: nowrap; /* Prevent headers from wrapping */
     vertical-align: middle; /* Vertically center the text */
@@ -32,6 +44,7 @@
 .content-table tbody td {
     padding: 15px;
     border-bottom: 1px solid #333; /* Subtle divider */
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale table body text */
 }
 
 /* Hover effect for rows */
@@ -43,6 +56,7 @@
 .content-table a {
     color: #00ff00;
     text-decoration: underline;
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale link text */
     transition: color 0.3s ease;
 }
 
@@ -50,55 +64,29 @@
     color: #006600; /* Darker green on hover */
 }
 
-/* Thumbnail styling */
-.thumbnail {
-    width: 100px;
-    height: auto;
-}
-
-/* Responsive Table */
-@media (max-width: 768px) {
-    .content-table {
-        font-size: 0.9em; /* Adjust font size for smaller screens */
-    }
-
-    .thumbnail {
-        width: 60px; /* Smaller thumbnails on mobile */
-    }
-}
-
-/* Sorting arrow alignment */
-.header-wrapper {
-    display: inline-flex;
-    align-items: center; /* Align text and arrow in the middle */
-    gap: 5px; /* Space between the text and arrow */
-}
-
-/* Sorting arrow styling */
-.sortable {
-    font-size: 0.8em;
-    margin-left: 5px; /* Add space between text and arrow */
-    display: inline;
-    vertical-align: middle; /* Align the arrow vertically with the text */
-}
-
-/* Arrows for sorting */
-.arrow-up::after {
-    content: " ▲";
-}
-
-.arrow-down::after {
-    content: " ▼";
-}
-
-/* Disable text selection in table headers */
-th {
-    user-select: none; /* Disable text selection */
-}
-
 /* Tags styling */
-td {
-    white-space: normal; /* Allow tags to wrap if needed */
+.tag-link {
+    font-size: 12px; /* Keep the tag text size smaller */
+    text-decoration: none !important; /* Ensure no underline for tags */
+    padding: 5px 10px;
+    margin: 5px 5px 5px 0;
+    background-color: #006600;
+    color: white;
+    border-radius: 20px;
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tag-link:hover {
+    background-color: #00ff00;
+    color: black;
+}
+
+/* Tag container to handle multiple tags */
+.tag-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow tags to wrap within their container */
+    gap: 5px; /* Add space between the tags */
 }
 
 /* Wrapper for dropdown, header, and table */
@@ -108,22 +96,21 @@ td {
     margin: 0 auto; /* Center it on the page */
 }
 
-/* Flexbox container for the header and dropdown */
+/* Flexbox container for the dropdown and search box */
 .header-dropdown-container {
     display: flex;
-    justify-content: space-between; /* Space between dropdown and header */
+    justify-content: space-between;
     align-items: center;
-    margin: 20px 0; /* Adjust spacing around the dropdown and table */
+    margin: 20px 0;
 }
 
-/* Dropdown styling */
 .filter-dropdown {
     padding: 5px;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale dropdown text */
     background-color: #333; /* Dark grey background */
     color: white; /* White text */
     border: none;
-    font-family: 'Courier New', Courier, monospace; /* Use Courier New font */
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
     appearance: none; /* Remove default styling */
     position: relative;
     width: 200px; /* Adjust the width as needed */
@@ -140,60 +127,16 @@ td {
     pointer-events: none;
 }
 
-/* Header styling */
-.page-header {
-    font-family: 'Courier New', Courier, monospace;
-    color: white;
-    font-size: 24px;
-    margin-bottom: 10px; /* Narrow space between header and dropdown */
-}
-
 /* Styling for the search box */
 .search-box {
     padding: 5px;
-    font-size: 16px;
-    margin-left: 10px;
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale search box text */
     background-color: #333;
     color: white;
     border: none;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-/* Ensure all table links have underline except for tag links */
-.content-table a {
-    color: #00ff00;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-.content-table a:hover {
-    color: #006600; /* Darker green on hover */
-}
-
-/* Remove underline for tag links */
-.tag-link {
-    text-decoration: none; /* No underline for tag links */
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 5px 5px 5px 0;
-    background-color: #006600; /* Dark green background */
-    color: white; /* White text */
-    font-size: 14px;
-    border-radius: 20px; /* Rounded corners */
-    font-family: 'Courier New', Courier, monospace; /* Consistent font */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
-}
-
-.tag-link:hover {
-    background-color: #00ff00; /* Bright green on hover */
-    color: black; /* Black text on hover */
-}
-
-/* Tag container to handle multiple tags */
-.tag-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow tags to wrap within their container */
-    gap: 5px; /* Add space between the tags */
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
+    width: 200px; /* Match the width with the dropdown */
+    margin-left: auto; /* Align the search box to the right */
 }
 
 /* Pagination controls styling */
@@ -209,7 +152,8 @@ td {
     border: none;
     margin: 0 5px;
     cursor: pointer;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
+    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale pagination text */
 }
 
 #paginationControls button:hover {

@@ -51,7 +51,7 @@ function populateTable() {
         const linkCell = document.createElement('td');
         const link = document.createElement('a');
         link.href = item.link;
-        link.textContent = 'View & Download';
+        link.textContent = 'view & download';
         linkCell.appendChild(link);
 
         // Append all cells to the row
