@@ -67,6 +67,27 @@ header {
     color: #006600; /* Darker green on hover */
 }
 
+/* Remove underline for tag links */
+.tag-link {
+    text-decoration: none !important; /* Force remove underline using !important */
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px 5px 5px 0;
+    background-color: #006600; /* Dark green background */
+    color: white; /* White text */
+    font-size: 14px;
+    border-radius: 20px; /* Rounded corners */
+    font-family: 'Courier New', Courier, monospace; /* Consistent font */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.tag-link:hover {
+    background-color: #00ff00; /* Bright green on hover */
+    color: black; /* Black text on hover */
+    text-decoration: none; /* Ensure underline doesn't appear on hover */
+}
+
+
 /* Main content */
 .content {
     text-align: center;
