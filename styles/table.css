@@ -44,7 +44,7 @@
 .content-table tbody td {
     padding: 15px;
     border-bottom: 1px solid #333; /* Subtle divider */
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale table body text */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale table body text */
 }
 
 /* Hover effect for rows */
@@ -56,7 +56,7 @@
 .content-table a {
     color: #00ff00;
     text-decoration: underline;
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale link text */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale link text */
     transition: color 0.3s ease;
 }
 
@@ -106,7 +106,7 @@
 
 .filter-dropdown {
     padding: 5px;
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale dropdown text */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale dropdown text */
     background-color: #333; /* Dark grey background */
     color: white; /* White text */
     border: none;
@@ -130,7 +130,7 @@
 /* Styling for the search box */
 .search-box {
     padding: 5px;
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale search box text */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale search box text */
     background-color: #333;
     color: white;
     border: none;
@@ -153,7 +153,7 @@
     margin: 0 5px;
     cursor: pointer;
     font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale pagination text */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale pagination text */
 }
 
 #paginationControls button:hover {

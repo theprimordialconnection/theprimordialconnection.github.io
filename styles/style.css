@@ -19,7 +19,7 @@ body {
     color: white;
     font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
     padding-top: 60px; /* Push content down to prevent overlap with fixed header */
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically adjust from 14px to 18px */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically adjust from 14px to 18px */
 }
 
 /* Header styling */
@@ -70,7 +70,7 @@ header {
     text-decoration: underline;
     font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
     transition: color 0.3s ease; /* Smooth transition effect */
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale menu text */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale menu text */
 }
 
 .menu li a:hover, .bottom-menu ul li a:hover {
@@ -124,7 +124,7 @@ header {
     padding-right: 100px; /* Add spacing between the two text blocks */
     color: #00ff00; /* Default green text, like the menu */
     font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale marquee text */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale marquee text */
 }
 
 /* Specific styling for the red text */
@@ -152,7 +152,7 @@ header {
     color: #00ff00; /* Match the text color */
     text-decoration: underline; /* Ensure the link is underlined */
     font-family: 'Mozart NBP', 'Courier New', Courier, monospace;
-    font-size: clamp(14px, 2vw, 18px); /* Dynamically scale links inside the marquee */
+    font-size: clamp(12px, 2vw, 18px); /* Dynamically scale links inside the marquee */
 }
 
 /* Continuous marquee animation */
@@ -240,6 +240,7 @@ footer {
     padding-right: 10px; /* Ensure text is 10px away from the right edge */
     position: relative;
     padding-bottom: 10px; /* Add padding to ensure footer text is 10px away from bottom */
+    font-size: clamp(12px, 2vw, 18px);
 }
 
 /* Footer icon styling */
@@ -258,7 +259,7 @@ footer p {
     position: absolute;
     bottom: 10px; /* Position 10px away from the bottom of the footer */
     right: 10px;  /* Position 10px away from the right side of the footer */
-    font-size: 18px; /* Keep the footer text at 18px */
+    font-size: clamp(12px, 2vw, 18px);
 }
 
 /* Responsive Styling for Smaller Screens */
