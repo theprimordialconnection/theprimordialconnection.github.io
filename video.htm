@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="prim0rdialfi5h">
+    <title>Video Player</title>
+    <link rel="stylesheet" href="../styles/style.css"> <!-- General stylesheet -->
+    <link rel="stylesheet" href="../styles/table.css"> <!-- Table-specific stylesheet -->
+
+    <style>
+        /* Additional CSS for the video player page */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            /* Align content to the left */
+            display: flex;
+            flex-direction: column;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .description {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .download-container {
+            display: flex;
+            justify-content: flex-end;
+            /* Align content to the right */
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .download-link {
+            font-size: 18px;
+            color: #00ff00;
+            text-decoration: none;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .download-link:hover {
+            background-color: #00ff00;
+            color: black;
+        }
+
+        .file-size {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section (same as in your previous pages) -->
+    <header>
+        <nav class="nav-container">
+            <a href="../index.htm">
+                <img src="../img/tpclogo.png" alt="Logo" class="logo">
+            </a>
+            <div class="burger" onclick="toggleMenu()">&#9776;</div>
+            <ul class="menu">
+                <li><a href="../seeds.htm">w33d seeds</a></li>
+                <li><a href="../packs.htm">sample packs</a></li>
+                <li><a href="../garms.htm">garms</a></li>
+                <li><a href="../ukparties.htm">uk parties</a></li>
+                <li><a href="../freeshit.htm">free shit</a></li>
+                <li><a href="../eggs.htm">eggs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Video Player Container -->
+    <div class="video-container">
+        <h1 id="videoTitle">Video Title</h1>
+
+        <!-- Description Section -->
+        <p id="videoDescription" class="description">Loading description...</p>
+
+        <!-- Video player below the description -->
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Download Section -->
+        <div class="download-container">
+            <a id="downloadLink" href="" class="download-link" download>Download Video</a>
+            <div id="fileSize" class="file-size">Calculating file size...</div> <!-- File size display -->
+        </div>
+    </div>
+
+    <!-- Footer Section (reused from previous pages) -->
+    <footer>
+        <img src="../img/rotating_favicon.gif" alt="Rotating Favicon" class="footer-icon">
+        <p>theprimordialconnection. based in north england.</p>
+    </footer>
+
+    <!-- Include JS for dynamically loading video data -->
+    <script src="../js/listData.js"></script>
+
+    <!-- Script to dynamically load video and description and calculate file size -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get URL parameters (query string)
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoTitle = urlParams.get('title'); // Get the video title
+
+            // Find the video data in listData.js based on the title parameter
+            const videoData = listData.find(item => item.title === videoTitle);
+
+            // If video data is found, set the video title, source, description, and document title
+            if (videoData) {
+                document.getElementById('videoTitle').innerText = videoData.title;
+                document.getElementById('videoSource').src = videoData.videoSrc;
+                document.getElementById('downloadLink').href = videoData.videoSrc;
+                document.getElementById('videoDescription').innerText = videoData.description;
+
+                // Set the page <title> to "{video name} | theprimordialconnection"
+                document.title = `${videoData.title} | theprimordialconnection`;
+
+                // Force the video to load
+                document.getElementById('videoPlayer').load();
+
+                // Function to calculate the file size
+                function calculateFileSize(url) {
+                    const fileSizeElement = document.getElementById('fileSize');
+                    fetch(url, { method: 'HEAD' })
+                        .then(response => {
+                            const fileSize = response.headers.get('content-length');
+                            if (fileSize) {
+                                const sizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Convert to MB
+                                fileSizeElement.innerText = `File size: ${sizeInMB} MB`;
+                            } else {
+                                fileSizeElement.innerText = 'File size not available';
+                            }
+                        })
+                        .catch(error => {
+                            fileSizeElement.innerText = 'Error calculating file size';
+                        });
+                }
+
+                // Calculate file size for the video
+                calculateFileSize(videoData.videoSrc);
+            } else {
+                document.getElementById('videoDescription').innerText = 'Video not found';
+                // Set a fallback title
+                document.title = "Video not found | theprimordialconnection";
+            }
+        });
+    </script>
+</body>
+
+</html>

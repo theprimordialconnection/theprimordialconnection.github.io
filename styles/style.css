@@ -15,7 +15,7 @@ body {
 
 /* Header styling */
 header {
-    background-color: rgba(22, 22, 43, 0.959); /* Dark grey */
+    background-color: rgba(0, 0, 0, 0.876); /* Dark grey */
     padding: 10px 20px;
     position: fixed; /* Fix the header at the top of the page */
     top: 0;
@@ -78,7 +78,7 @@ header {
     width: 100%;
     max-width: 800px; /* Align with tpcwelcome.png */
     overflow: hidden; /* Hide overflow of the marquee text */
-    margin: 10px auto 10px auto; /* Add 10px margin on top and bottom */
+    margin: 10px auto 5px auto; /* Add 10px margin on top and bottom */
     position: relative; /* To position it above the image */
 }
 

@@ -1,0 +1,156 @@
+/* Table Styling */
+.content-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.content-table thead th {
+    border-bottom: 2px solid #00ff00; /* Bright green underline */
+    padding: 15px;
+    color: #00ff00;
+    font-size: 1.2em;
+}
+
+.content-table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #333; /* Subtle divider */
+}
+
+.content-table tbody tr:hover {
+    background-color: #222; /* Darker background on hover */
+}
+
+.content-table a {
+    color: #00ff00;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.content-table a:hover {
+    color: #006600; /* Darker green on hover */
+}
+
+/* Thumbnail styling */
+.thumbnail {
+    width: 100px;
+    height: auto;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .content-table {
+        font-size: 0.9em; /* Adjust font size for smaller screens */
+    }
+
+    .thumbnail {
+        width: 60px; /* Smaller thumbnails on mobile */
+    }
+}
+
+/* New styles added for the dropdown, header, and sorting */
+
+/* Inline CSS for arrow styling */
+.sortable {
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.arrow-up::after {
+    content: " ▲";
+}
+
+.arrow-down::after {
+    content: " ▼";
+}
+
+/* Prevent text selection in table headers */
+th {
+    user-select: none; /* Disable text selection */
+}
+
+/* Wrapper for dropdown, header, and table */
+.table-wrapper {
+    width: 100%;
+    max-width: 800px; /* Align with the table width */
+    margin: 0 auto; /* Center it on the page */
+}
+
+/* Flexbox container for the header and dropdown */
+.header-dropdown-container {
+    display: flex;
+    justify-content: space-between; /* Space between dropdown and header */
+    align-items: center;
+    margin: 20px 0 0 0; /* Add 10px extra space from the top menu */
+    margin-bottom: 10px; /* Narrow space between header-dropdown line and table */
+}
+
+/* Dropdown Styling */
+.filter-dropdown {
+    padding: 5px;
+    font-size: 16px;
+    background-color: #333; /* Dark grey background */
+    color: white; /* White text */
+    border: none;
+    font-family: 'Courier New', Courier, monospace; /* Use Courier New font */
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    position: relative;
+    width: 200px; /* Adjust the width as needed */
+}
+
+/* Custom dropdown arrow styling */
+.filter-dropdown::after {
+    content: "▼";
+    color: white; /* White arrow */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Header styling */
+.page-header {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 0; /* Remove bottom margin to narrow space between header and dropdown */
+}
+
+/* Styling for the search box */
+.search-box {
+    padding: 5px;
+    font-size: 16px;
+    margin-left: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Pagination controls styling */
+#paginationControls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#paginationControls button {
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#paginationControls button:hover {
+    background-color: #444;
+}
