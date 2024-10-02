@@ -22,12 +22,22 @@
 /* Table Styling */
 .content-table {
     width: 100%;
-    max-width: 800px;
+    max-width: 800px; /* Set the max width to match tpcwelcome.png */
     margin: 40px auto;
     border-collapse: collapse;
     text-align: left;
     background-color: black;
     color: white;
+    table-layout: fixed; /* Ensure the table resizes dynamically */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Ensure the table doesn't exceed the page width */
+.table-wrapper {
+    width: 100%;
+    max-width: 800px; /* Align with tpcwelcome.png */
+    margin: 0 auto; /* Center it on the page */
+    overflow-x: auto; /* Allow horizontal scroll if necessary */
 }
 
 .content-table thead th {
@@ -38,6 +48,8 @@
     text-align: left; /* Ensure headers are left-aligned */
     white-space: nowrap; /* Prevent headers from wrapping */
     vertical-align: middle; /* Vertically center the text */
+    overflow: hidden; /* Prevents header text from overflowing */
+    text-overflow: ellipsis; /* Adds ellipsis if content overflows */
 }
 
 /* Table body styling */
@@ -45,6 +57,10 @@
     padding: 15px;
     border-bottom: 1px solid #333; /* Subtle divider */
     font-size: clamp(14px, 2vw, 18px); /* Dynamically scale table body text */
+    word-wrap: break-word; /* Ensure text wraps within table cells */
+    white-space: nowrap; /* Prevent content overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    overflow: hidden; /* Hide content that overflows the cell */
 }
 
 /* Hover effect for rows */
@@ -87,14 +103,6 @@
     display: flex;
     flex-wrap: wrap; /* Allow tags to wrap within their container */
     gap: 5px; /* Add space between the tags */
-}
-
-/* Wrapper for dropdown, header, and table */
-.table-wrapper {
-    width: 100%;
-    max-width: 800px; /* Align with the table width */
-    margin: 0 auto; /* Center it on the page */
-    overflow-x: auto; /* Add horizontal scroll for small screens */
 }
 
 /* Flexbox container for the dropdown and search box */
