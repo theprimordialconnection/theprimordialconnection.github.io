@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="prim0rdialfi5h">
+    <title>Document Viewer</title>
+    <link rel="stylesheet" href="../styles/style.css"> <!-- General stylesheet -->
+    <link rel="stylesheet" href="../styles/table.css"> <!-- Table-specific stylesheet -->
+
+    <style>
+        /* Additional CSS for document page */
+        .document-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .document-title {
+            font-size: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00ff00; /* Bright green underline */
+            width: 100%; /* Same width as the document container */
+        }
+
+        .toggle-description {
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #00ff00;
+        }
+
+        .toggle-description span {
+            font-size: 16px;
+            margin-left: 5px;
+        }
+
+        .description {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: justify;
+            display: none; /* Initially hidden */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+        .view-button, .download-button {
+            font-size: 18px;
+            color: #00ff00;
+            text-decoration: none;
+            padding: 10px;
+            border: 2px solid #00ff00;
+            margin-right: 10px;
+        }
+
+        .view-button:hover, .download-button:hover {
+            background-color: #00ff00;
+            color: black;
+        }
+
+        .document-section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="nav-container">
+            <a href="../index.htm">
+                <img src="../img/tpclogo.png" alt="Logo" class="logo">
+            </a>
+            <div class="burger" onclick="toggleMenu()">&#9776;</div>
+            <ul class="menu">
+                <li><a href="../seeds.htm">w33d seeds</a></li>
+                <li><a href="../packs.htm">sample packs</a></li>
+                <li><a href="../garms.htm">garms</a></li>
+                <li><a href="../ukparties.htm">uk parties</a></li>
+                <li><a href="../freeshit.htm">free shit</a></li>
+                <li><a href="../eggs.htm">eggs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Document Viewer Container -->
+    <div class="document-container">
+        <h1 id="documentTitle" class="document-title">Document Title</h1>
+
+        <!-- Dynamic Document Sections Will Be Appended Here -->
+        <div id="documentSections"></div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <img src="../img/rotating_favicon.gif" alt="Rotating Favicon" class="footer-icon">
+        <p>theprimordialconnection. based in north england.</p>
+    </footer>
+
+    <!-- Script to dynamically load document details, toggle description, and update buttons -->
+    <script src="../js/listData.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const documentTitle = urlParams.get('title'); // Get document title from URL
+
+            // Find the document data in listData.js
+            const documentData = listData.find(item => item.title === documentTitle);
+
+            // If document data is found, populate the page with multiple or single documents
+            if (documentData) {
+                document.getElementById('documentTitle').innerText = documentData.title;
+
+                // Container to hold document sections
+                const documentSections = document.getElementById('documentSections');
+
+                // If multiple documents, loop through and create sections
+                if (documentData.documents && documentData.documents.length > 0) {
+                    documentData.documents.forEach(doc => {
+                        const section = document.createElement('div');
+                        section.classList.add('document-section');
+
+                        const toggleDescription = document.createElement('p');
+                        toggleDescription.classList.add('toggle-description');
+                        toggleDescription.innerHTML = 'Description <span>►</span>';
+
+                        const description = document.createElement('p');
+                        description.classList.add('description');
+                        description.innerHTML = doc.description;
+
+                        const buttonContainer = document.createElement('div');
+                        buttonContainer.classList.add('button-container');
+
+                        const viewButton = document.createElement('a');
+                        viewButton.classList.add('view-button');
+                        viewButton.href = doc.documentSrc;
+                        viewButton.target = '_blank';
+                        viewButton.textContent = 'View PDF';
+
+                        const downloadButton = document.createElement('a');
+                        downloadButton.classList.add('download-button');
+                        downloadButton.href = doc.documentSrc;
+                        downloadButton.download = '';
+                        downloadButton.textContent = 'Download PDF';
+
+                        buttonContainer.appendChild(viewButton);
+                        buttonContainer.appendChild(downloadButton);
+
+                        section.appendChild(toggleDescription);
+                        section.appendChild(description);
+                        section.appendChild(buttonContainer);
+
+                        documentSections.appendChild(section);
+
+                        // Toggle description functionality for each document section
+                        toggleDescription.addEventListener('click', function () {
+                            if (description.style.display === 'none' || description.style.display === '') {
+                                description.style.display = 'block';
+                                toggleDescription.querySelector('span').innerText = '▼';
+                            } else {
+                                description.style.display = 'none';
+                                toggleDescription.querySelector('span').innerText = '►';
+                            }
+                        });
+                    });
+                } else {
+                    // For a single document
+                    const section = document.createElement('div');
+                    section.classList.add('document-section');
+
+                    const toggleDescription = document.createElement('p');
+                    toggleDescription.classList.add('toggle-description');
+                    toggleDescription.innerHTML = 'Description <span>►</span>';
+
+                    const description = document.createElement('p');
+                    description.classList.add('description');
+                    description.innerHTML = documentData.description;
+
+                    const buttonContainer = document.createElement('div');
+                    buttonContainer.classList.add('button-container');
+
+                    const viewButton = document.createElement('a');
+                    viewButton.classList.add('view-button');
+                    viewButton.href = documentData.documentSrc;
+                    viewButton.target = '_blank';
+                    viewButton.textContent = 'View PDF';
+
+                    const downloadButton = document.createElement('a');
+                    downloadButton.classList.add('download-button');
+                    downloadButton.href = documentData.documentSrc;
+                    downloadButton.download = '';
+                    downloadButton.textContent = 'Download PDF';
+
+                    buttonContainer.appendChild(viewButton);
+                    buttonContainer.appendChild(downloadButton);
+
+                    section.appendChild(toggleDescription);
+                    section.appendChild(description);
+                    section.appendChild(buttonContainer);
+
+                    documentSections.appendChild(section);
+
+                    // Toggle description functionality
+                    toggleDescription.addEventListener('click', function () {
+                        if (description.style.display === 'none' || description.style.display === '') {
+                            description.style.display = 'block';
+                            toggleDescription.querySelector('span').innerText = '▼';
+                        } else {
+                            description.style.display = 'none';
+                            toggleDescription.querySelector('span').innerText = '►';
+                        }
+                    });
+                }
+
+                // Set the page <title> to "{document name} | theprimordialconnection"
+                document.title = `${documentData.title} | theprimordialconnection`;
+            } else {
+                document.getElementById('documentTitle').innerText = 'Document not found.';
+                document.title = "Document not found | theprimordialconnection";
+            }
+        });
+    </script>
+    
+</body>
+
+</html>

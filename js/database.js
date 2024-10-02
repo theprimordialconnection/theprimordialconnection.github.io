@@ -10,6 +10,74 @@ function toggleMenu() {
     menu.classList.toggle('active');
 }
 
+// Function to dynamically populate the table
+function populateTable() {
+    const tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = "";  // Clear the table before populating
+
+    listData.forEach(item => {
+        const row = document.createElement('tr');
+        row.classList.add('table-row'); // Add class for filtering
+        row.setAttribute('data-category', item.category.toLowerCase()); // Set the data-category attribute
+
+        // Create table cells for each column
+        const nameCell = document.createElement('td');
+        nameCell.textContent = item.title;
+
+        const dateCell = document.createElement('td');
+        dateCell.textContent = item.date;
+
+        const categoryCell = document.createElement('td');
+        categoryCell.textContent = item.category;
+
+        // Create the tags cell and make tags clickable
+        const tagsCell = document.createElement('td');
+        if (item.tags && item.tags.length) {
+            item.tags.forEach(tag => {
+                const tagLink = document.createElement('a');
+                tagLink.href = `tag.htm?tag=${tag}`;  // Link to tag.htm with the selected tag
+                tagLink.textContent = tag;
+                tagLink.classList.add('tag-link'); // Optional: Add a class for styling
+                tagsCell.appendChild(tagLink);
+                
+                // Add space between tags
+                tagsCell.appendChild(document.createTextNode(' '));
+            });
+        } else {
+            tagsCell.textContent = "No tags"; // Display "No tags" if there are no tags
+        }
+
+        const linkCell = document.createElement('td');
+        const link = document.createElement('a');
+        link.href = item.link;
+        link.textContent = 'View & Download';
+        linkCell.appendChild(link);
+
+        // Append all cells to the row
+        row.appendChild(nameCell);
+        row.appendChild(dateCell);
+        row.appendChild(categoryCell);
+        row.appendChild(tagsCell);
+        row.appendChild(linkCell);
+
+        // Append the row to the table body
+        tableBody.appendChild(row);
+    });
+}
+
+// Function to filter table by category
+function filterTable() {
+    const dropdown = document.getElementById("categoryFilter");
+    const filter = dropdown.value.toLowerCase();
+    const rows = document.querySelectorAll('.table-row');
+
+    // Loop through all table rows and hide those that don't match the filter
+    rows.forEach(row => {
+        const category = row.getAttribute("data-category");
+        row.style.display = (filter === "all" || category === filter) ? "" : "none";
+    });
+}
+
 // Sort Table Function
 function sortTable(n, type) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -20,18 +88,10 @@ function sortTable(n, type) {
     // Update arrow immediately on click
     if (n === 0) {
         var nameArrow = document.getElementById("nameArrow");
-        if (dir === "asc") {
-            nameArrow.innerHTML = "▼"; // Change to down arrow for descending sort
-        } else {
-            nameArrow.innerHTML = "▲"; // Change to up arrow for ascending sort
-        }
+        nameArrow.innerHTML = dir === "asc" ? "▼" : "▲";  // Update arrow
     } else if (n === 1) {
         var dateArrow = document.getElementById("dateArrow");
-        if (dir === "asc") {
-            dateArrow.innerHTML = "▼"; // Change to down arrow for descending sort
-        } else {
-            dateArrow.innerHTML = "▲"; // Change to up arrow for ascending sort
-        }
+        dateArrow.innerHTML = dir === "asc" ? "▼" : "▲";  // Update arrow
     }
 
     // Start sorting the table rows
@@ -46,28 +106,14 @@ function sortTable(n, type) {
             if (type === 'date') {
                 var dateX = new Date(x.innerHTML);
                 var dateY = new Date(y.innerHTML);
-                if (dir == "asc") {
-                    if (dateX > dateY) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if (dateX < dateY) {
-                        shouldSwitch = true;
-                        break;
-                    }
+                if (dir == "asc" ? dateX > dateY : dateX < dateY) {
+                    shouldSwitch = true;
+                    break;
                 }
             } else if (type === 'text') {
-                if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
+                if (dir == "asc" ? x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase() : x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
                 }
             }
         }
@@ -75,38 +121,17 @@ function sortTable(n, type) {
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
             switchcount++;
-        } else {
-            if (switchcount == 0 && dir == "asc") {
-                dir = "desc";
-                switching = true;
-            }
+        } else if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
         }
     }
+
     // Toggle the sorting direction for the next click
     if (n === 0) {
-        currentSortDirName = (dir === "asc") ? "desc" : "asc";
+        currentSortDirName = dir === "asc" ? "desc" : "asc";
     } else if (n === 1) {
-        currentSortDirDate = (dir === "asc") ? "desc" : "asc";
-    }
-}
-
-// Filter Table by Category
-// Filter Table by Category
-function filterTable() {
-    var dropdown, filter, table, rows, i, category;
-    dropdown = document.getElementById("categoryFilter");
-    filter = dropdown.value;
-    table = document.getElementById("dataTable");
-    rows = table.getElementsByClassName("table-row");
-
-    // Loop through all table rows and hide those that don't match the filter
-    for (i = 0; i < rows.length; i++) {
-        category = rows[i].getAttribute("data-category");
-        if (filter === "all" || category === filter) {
-            rows[i].style.display = ""; // Show row
-        } else {
-            rows[i].style.display = "none"; // Hide row
-        }
+        currentSortDirDate = dir === "asc" ? "desc" : "asc";
     }
 }
 
@@ -175,5 +200,6 @@ function changePage(pageNumber) {
 
 // Initial load
 window.onload = function () {
+    populateTable();  // Call the populateTable function on page load
     paginateTable();
-}
+};

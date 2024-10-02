@@ -1,3 +1,11 @@
+/* Center the image */
+.welcome-image {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px; /* Align the image width with the table */
+}
+
 /* Table Styling */
 .content-table {
     width: 100%;
@@ -15,17 +23,23 @@
     padding: 15px;
     color: #00ff00;
     font-size: 1.2em;
+    text-align: left; /* Ensure headers are left-aligned */
+    white-space: nowrap; /* Prevent headers from wrapping */
+    vertical-align: middle; /* Vertically center the text */
 }
 
+/* Table body styling */
 .content-table tbody td {
     padding: 15px;
     border-bottom: 1px solid #333; /* Subtle divider */
 }
 
+/* Hover effect for rows */
 .content-table tbody tr:hover {
     background-color: #222; /* Darker background on hover */
 }
 
+/* Links within table cells */
 .content-table a {
     color: #00ff00;
     text-decoration: underline;
@@ -53,14 +67,22 @@
     }
 }
 
-/* New styles added for the dropdown, header, and sorting */
-
-/* Inline CSS for arrow styling */
-.sortable {
-    cursor: pointer;
-    padding-left: 10px;
+/* Sorting arrow alignment */
+.header-wrapper {
+    display: inline-flex;
+    align-items: center; /* Align text and arrow in the middle */
+    gap: 5px; /* Space between the text and arrow */
 }
 
+/* Sorting arrow styling */
+.sortable {
+    font-size: 0.8em;
+    margin-left: 5px; /* Add space between text and arrow */
+    display: inline;
+    vertical-align: middle; /* Align the arrow vertically with the text */
+}
+
+/* Arrows for sorting */
 .arrow-up::after {
     content: " ▲";
 }
@@ -69,9 +91,14 @@
     content: " ▼";
 }
 
-/* Prevent text selection in table headers */
+/* Disable text selection in table headers */
 th {
     user-select: none; /* Disable text selection */
+}
+
+/* Tags styling */
+td {
+    white-space: normal; /* Allow tags to wrap if needed */
 }
 
 /* Wrapper for dropdown, header, and table */
@@ -86,11 +113,10 @@ th {
     display: flex;
     justify-content: space-between; /* Space between dropdown and header */
     align-items: center;
-    margin: 20px 0 0 0; /* Add 10px extra space from the top menu */
-    margin-bottom: 10px; /* Narrow space between header-dropdown line and table */
+    margin: 20px 0; /* Adjust spacing around the dropdown and table */
 }
 
-/* Dropdown Styling */
+/* Dropdown styling */
 .filter-dropdown {
     padding: 5px;
     font-size: 16px;
@@ -99,8 +125,6 @@ th {
     border: none;
     font-family: 'Courier New', Courier, monospace; /* Use Courier New font */
     appearance: none; /* Remove default styling */
-    -webkit-appearance: none; /* For Safari */
-    -moz-appearance: none; /* For Firefox */
     position: relative;
     width: 200px; /* Adjust the width as needed */
 }
@@ -121,7 +145,7 @@ th {
     font-family: 'Courier New', Courier, monospace;
     color: white;
     font-size: 24px;
-    margin-bottom: 0; /* Remove bottom margin to narrow space between header and dropdown */
+    margin-bottom: 10px; /* Narrow space between header and dropdown */
 }
 
 /* Styling for the search box */

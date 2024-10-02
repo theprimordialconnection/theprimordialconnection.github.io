@@ -8,60 +8,6 @@
     <title>docs | theprimordialconnection</title>
     <link rel="stylesheet" href="styles/style.css"> <!-- General stylesheet -->
     <link rel="stylesheet" href="styles/table.css"> <!-- Table-specific stylesheet -->
-
-    <style>
-        /* Additional CSS to center the image */
-        .welcome-image {
-            display: block;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 800px;
-            /* Align with the table width */
-        }
-
-        /* Table CSS */
-        .content-table {
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto;
-            border-collapse: collapse;
-            text-align: left;
-            background-color: black;
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .content-table thead th {
-            border-bottom: 2px solid #00ff00;
-            padding: 15px;
-            color: #00ff00;
-            font-size: 1.2em;
-        }
-
-        .content-table tbody td {
-            padding: 15px;
-            border-bottom: 1px solid #333;
-        }
-
-        .content-table tbody tr:hover {
-            background-color: #222;
-        }
-
-        .content-table a {
-            color: #00ff00;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        .content-table a:hover {
-            color: #006600;
-        }
-
-        .thumbnail {
-            width: 100px;
-            height: auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -100,8 +46,7 @@
             </select>
 
             <!-- Search box for the 'Name' column -->
-            <input type="text" id="searchInput" class="search-box" onkeyup="searchByName()"
-                placeholder="Search by Name">
+            <input type="text" id="searchInput" class="search-box" onkeyup="searchByName()" placeholder="Search by Name">
 
             <h1 class="page-header">tpc database_:</h1>
         </div>
@@ -112,12 +57,20 @@
             <table class="content-table" id="dataTable">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0, 'text')" id="nameHeader">Name <span class="sortable"
-                                id="nameArrow">▲</span></th>
-                        <th onclick="sortTable(1, 'date')" id="dateHeader">Date Uploaded <span class="sortable"
-                                id="dateArrow">▲</span></th>
+                        <th onclick="sortTable(0, 'text')">
+                            <div class="header-wrapper">
+                                <span>Name</span>
+                                <span class="sortable" id="nameArrow">▲</span>
+                            </div>
+                        </th>
+                        <th onclick="sortTable(1, 'date')">
+                            <div class="header-wrapper">
+                                <span>Date Uploaded</span>
+                                <span class="sortable" id="dateArrow">▲</span>
+                            </div>
+                        </th>
                         <th>Category</th>
-                        <th>Thumbnail</th>
+                        <th>Tags</th> <!-- Changed from 'Thumbnail' to 'Tags' -->
                         <th>Link</th>
                     </tr>
                 </thead>
@@ -140,96 +93,6 @@
     <!-- Include JS scripts for dynamic data, sorting, filtering, and pagination -->
     <script src="js/listData.js"></script> <!-- listData.js contains the dynamic table data -->
     <script src="js/database.js"></script> <!-- database.js handles sorting, filtering, pagination -->
-    <script>
-        const tableBody = document.getElementById('tableBody');
-
-        // Function to dynamically populate the table
-        function populateTable() {
-            listData.forEach(item => {
-                const row = document.createElement('tr');
-
-                // Create table cells for each column
-                const nameCell = document.createElement('td');
-                nameCell.textContent = item.title;
-
-                const dateCell = document.createElement('td');
-                dateCell.textContent = item.date;
-
-                const categoryCell = document.createElement('td');
-                categoryCell.textContent = item.category;
-
-                const thumbnailCell = document.createElement('td');
-                const thumbnailImg = document.createElement('img');
-                thumbnailImg.src = item.thumbnail;
-                thumbnailImg.alt = `${item.title} thumbnail`;
-                thumbnailImg.classList.add('thumbnail');
-                thumbnailCell.appendChild(thumbnailImg);
-
-                const linkCell = document.createElement('td');
-                const link = document.createElement('a');
-                link.href = item.link;
-                link.textContent = 'View & Download';
-                linkCell.appendChild(link);
-
-                // Append all cells to the row
-                row.appendChild(nameCell);
-                row.appendChild(dateCell);
-                row.appendChild(categoryCell);
-                row.appendChild(thumbnailCell);
-                row.appendChild(linkCell);
-
-                // Append the row to the table body
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Function to filter table by category
-        function filterTable() {
-            const filterValue = document.getElementById('categoryFilter').value.toLowerCase();
-            tableBody.innerHTML = ''; // Clear the current table
-
-            // Filter rows based on the selected category
-            const filteredData = filterValue === 'all' ? listData : listData.filter(item => item.category.toLowerCase() === filterValue);
-
-            // Repopulate the table with the filtered data
-            filteredData.forEach(item => {
-                const row = document.createElement('tr');
-
-                const nameCell = document.createElement('td');
-                nameCell.textContent = item.title;
-
-                const dateCell = document.createElement('td');
-                dateCell.textContent = item.date;
-
-                const categoryCell = document.createElement('td');
-                categoryCell.textContent = item.category;
-
-                const thumbnailCell = document.createElement('td');
-                const thumbnailImg = document.createElement('img');
-                thumbnailImg.src = item.thumbnail;
-                thumbnailImg.alt = `${item.title} thumbnail`;
-                thumbnailImg.classList.add('thumbnail');
-                thumbnailCell.appendChild(thumbnailImg);
-
-                const linkCell = document.createElement('td');
-                const link = document.createElement('a');
-                link.href = item.link;
-                link.textContent = 'View & Download';
-                linkCell.appendChild(link);
-
-                row.appendChild(nameCell);
-                row.appendChild(dateCell);
-                row.appendChild(categoryCell);
-                row.appendChild(thumbnailCell);
-                row.appendChild(linkCell);
-
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Call the function to populate the table
-        populateTable();
-    </script>
 </body>
 
 </html>

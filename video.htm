@@ -10,15 +10,40 @@
     <link rel="stylesheet" href="../styles/table.css"> <!-- Table-specific stylesheet -->
 
     <style>
-        /* Additional CSS for the video player page */
         .video-container {
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
             text-align: left;
-            /* Align content to the left */
             display: flex;
             flex-direction: column;
+        }
+
+        .video-title {
+            font-size: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00ff00; /* Bright green underline */
+            width: 100%;
+        }
+
+        .toggle-description {
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #00ff00;
+        }
+
+        .toggle-description span {
+            font-size: 16px;
+            margin-left: 5px;
+        }
+
+        .description {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: justify;
+            display: none; /* Initially hidden */
         }
 
         video {
@@ -27,17 +52,9 @@
             margin-top: 10px;
         }
 
-        .description {
-            margin-top: 10px;
-            font-size: 14px;
-            line-height: 1.6;
-            text-align: justify;
-        }
-
         .download-container {
             display: flex;
             justify-content: flex-end;
-            /* Align content to the right */
             flex-direction: column;
             align-items: flex-end;
         }
@@ -66,7 +83,6 @@
 </head>
 
 <body>
-    <!-- Header Section (same as in your previous pages) -->
     <header>
         <nav class="nav-container">
             <a href="../index.htm">
@@ -84,82 +100,145 @@
         </nav>
     </header>
 
-    <!-- Video Player Container -->
     <div class="video-container">
-        <h1 id="videoTitle">Video Title</h1>
+        <h1 id="videoTitle" class="video-title">Video Title</h1>
 
-        <!-- Description Section -->
-        <p id="videoDescription" class="description">Loading description...</p>
-
-        <!-- Video player below the description -->
-        <video id="videoPlayer" controls>
-            <source id="videoSource" src="" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
-        <!-- Download Section -->
-        <div class="download-container">
-            <a id="downloadLink" href="" class="download-link" download>Download Video</a>
-            <div id="fileSize" class="file-size">Calculating file size...</div> <!-- File size display -->
-        </div>
+        <!-- Videos will be dynamically inserted here -->
+        <div id="videosSection"></div>
     </div>
 
-    <!-- Footer Section (reused from previous pages) -->
     <footer>
         <img src="../img/rotating_favicon.gif" alt="Rotating Favicon" class="footer-icon">
         <p>theprimordialconnection. based in north england.</p>
     </footer>
 
-    <!-- Include JS for dynamically loading video data -->
     <script src="../js/listData.js"></script>
-
-    <!-- Script to dynamically load video and description and calculate file size -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Get URL parameters (query string)
             const urlParams = new URLSearchParams(window.location.search);
-            const videoTitle = urlParams.get('title'); // Get the video title
-
-            // Find the video data in listData.js based on the title parameter
+            const videoTitle = urlParams.get('title');
             const videoData = listData.find(item => item.title === videoTitle);
 
-            // If video data is found, set the video title, source, description, and document title
             if (videoData) {
                 document.getElementById('videoTitle').innerText = videoData.title;
-                document.getElementById('videoSource').src = videoData.videoSrc;
-                document.getElementById('downloadLink').href = videoData.videoSrc;
-                document.getElementById('videoDescription').innerText = videoData.description;
-
-                // Set the page <title> to "{video name} | theprimordialconnection"
                 document.title = `${videoData.title} | theprimordialconnection`;
 
-                // Force the video to load
-                document.getElementById('videoPlayer').load();
+                const videosSection = document.getElementById('videosSection');
 
-                // Function to calculate the file size
-                function calculateFileSize(url) {
-                    const fileSizeElement = document.getElementById('fileSize');
-                    fetch(url, { method: 'HEAD' })
-                        .then(response => {
+                // If there are multiple videos
+                if (Array.isArray(videoData.videos)) {
+                    videoData.videos.forEach((video, index) => {
+                        const videoContainer = document.createElement('div');
+
+                        // Video player
+                        const videoPlayer = document.createElement('video');
+                        videoPlayer.setAttribute('controls', '');
+                        const videoSource = document.createElement('source');
+                        videoSource.setAttribute('src', video.videoSrc);
+                        videoSource.setAttribute('type', 'video/mp4');
+                        videoPlayer.appendChild(videoSource);
+                        videoContainer.appendChild(videoPlayer);
+
+                        // Description toggle
+                        const toggleDescription = document.createElement('p');
+                        toggleDescription.className = 'toggle-description';
+                        toggleDescription.innerHTML = `Description <span>►</span>`;
+                        videoContainer.appendChild(toggleDescription);
+
+                        const description = document.createElement('p');
+                        description.className = 'description';
+                        description.innerHTML = video.description;
+                        videoContainer.appendChild(description);
+
+                        // Toggle functionality
+                        toggleDescription.addEventListener('click', function () {
+                            if (description.style.display === 'none' || description.style.display === '') {
+                                description.style.display = 'block';
+                                toggleDescription.querySelector('span').innerText = '▼';
+                            } else {
+                                description.style.display = 'none';
+                                toggleDescription.querySelector('span').innerText = '►';
+                            }
+                        });
+
+                        // Download link and file size
+                        const downloadContainer = document.createElement('div');
+                        downloadContainer.className = 'download-container';
+                        const downloadLink = document.createElement('a');
+                        downloadLink.className = 'download-link';
+                        downloadLink.innerText = 'Download Video';
+                        downloadLink.setAttribute('href', video.videoSrc);
+                        downloadLink.setAttribute('download', '');
+                        downloadContainer.appendChild(downloadLink);
+
+                        const fileSizeElement = document.createElement('div');
+                        fileSizeElement.className = 'file-size';
+                        downloadContainer.appendChild(fileSizeElement);
+                        videoContainer.appendChild(downloadContainer);
+
+                        // Function to calculate file size
+                        fetch(video.videoSrc, { method: 'HEAD' }).then(response => {
                             const fileSize = response.headers.get('content-length');
                             if (fileSize) {
-                                const sizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Convert to MB
+                                const sizeInMB = (fileSize / (1024 * 1024)).toFixed(2);
                                 fileSizeElement.innerText = `File size: ${sizeInMB} MB`;
                             } else {
                                 fileSizeElement.innerText = 'File size not available';
                             }
-                        })
-                        .catch(error => {
+                        }).catch(() => {
                             fileSizeElement.innerText = 'Error calculating file size';
                         });
-                }
 
-                // Calculate file size for the video
-                calculateFileSize(videoData.videoSrc);
+                        videosSection.appendChild(videoContainer);
+                    });
+                } else {
+                    // If there is only one video
+                    const videoContainer = document.createElement('div');
+
+                    const videoPlayer = document.createElement('video');
+                    videoPlayer.setAttribute('controls', '');
+                    const videoSource = document.createElement('source');
+                    videoSource.setAttribute('src', videoData.videoSrc);
+                    videoSource.setAttribute('type', 'video/mp4');
+                    videoPlayer.appendChild(videoSource);
+                    videoContainer.appendChild(videoPlayer);
+
+                    const description = document.createElement('p');
+                    description.className = 'description';
+                    description.innerHTML = videoData.description;
+                    videoContainer.appendChild(description);
+
+                    const downloadContainer = document.createElement('div');
+                    downloadContainer.className = 'download-container';
+                    const downloadLink = document.createElement('a');
+                    downloadLink.className = 'download-link';
+                    downloadLink.innerText = 'Download Video';
+                    downloadLink.setAttribute('href', videoData.videoSrc);
+                    downloadLink.setAttribute('download', '');
+                    downloadContainer.appendChild(downloadLink);
+
+                    const fileSizeElement = document.createElement('div');
+                    fileSizeElement.className = 'file-size';
+                    downloadContainer.appendChild(fileSizeElement);
+                    videoContainer.appendChild(downloadContainer);
+
+                    fetch(videoData.videoSrc, { method: 'HEAD' }).then(response => {
+                        const fileSize = response.headers.get('content-length');
+                        if (fileSize) {
+                            const sizeInMB = (fileSize / (1024 * 1024)).toFixed(2);
+                            fileSizeElement.innerText = `File size: ${sizeInMB} MB`;
+                        } else {
+                            fileSizeElement.innerText = 'File size not available';
+                        }
+                    }).catch(() => {
+                        fileSizeElement.innerText = 'Error calculating file size';
+                    });
+
+                    videosSection.appendChild(videoContainer);
+                }
             } else {
-                document.getElementById('videoDescription').innerText = 'Video not found';
-                // Set a fallback title
-                document.title = "Video not found | theprimordialconnection";
+                document.getElementById('videosSection').innerHTML = 'Video not found';
+                document.title = 'Video not found | theprimordialconnection';
             }
         });
     </script>
